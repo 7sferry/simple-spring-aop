@@ -14,28 +14,28 @@ import org.springframework.stereotype.Component;
 @Configuration
 public class InterceptionConfig{
 
-	@Before("@annotation(interception) && execution(* *(..))")
+	@Before("@annotation(interception)")
 	public void before(Interception interception){
 		System.out.println(interception.printValue());
 	}
 
-	@After("@annotation(interception) && execution(* *(..))")
+	@After("@annotation(interception)")
 	public void after(Interception interception){
 		System.out.println("executed");
 	}
 
-	@AfterThrowing(value = "@annotation(interception) && execution(* *(..))", throwing = "error")
-	public void afterThrowing(Interception interception, Exception error){
+	@AfterThrowing(value = "@annotation(interception)")
+	public void afterThrowing(Interception interception){
 		System.out.println("ada error");
 	}
 
-	@AfterReturning("@annotation(interception) && execution(* *(..))")
+	@AfterReturning("@annotation(interception)")
 	public void afterReturning(Interception interception){
 		System.out.println("tidak ada error");
 		System.out.println();
 	}
 
-	@Around("@annotation(interceptionAround) && execution(* *(..))")
+	@Around("@annotation(interceptionAround)")
 	public Object around(ProceedingJoinPoint proceedingJoinPoint, InterceptionAround interceptionAround) throws Throwable{
 		System.out.println("kalkulasinya dimulai");
 		Object proceed = proceedingJoinPoint.proceed();
