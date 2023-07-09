@@ -24,7 +24,7 @@ public class InterceptionConfig{
 		System.out.println("executed");
 	}
 
-	@AfterThrowing(value = "@annotation(interception)")
+	@AfterThrowing("@annotation(interception)")
 	public void afterThrowing(Interception interception){
 		System.out.println("ada error");
 	}
